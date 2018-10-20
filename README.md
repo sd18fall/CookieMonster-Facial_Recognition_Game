@@ -1,4 +1,4 @@
-# Project Title
+# Cookie Monster
 
 This project uses OpenCV and PyGame to create a fun, interactive game. 
 
