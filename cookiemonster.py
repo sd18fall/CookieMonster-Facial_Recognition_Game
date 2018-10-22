@@ -70,10 +70,10 @@ class Mouth(object):
         self.face_cascade = cv2.CascadeClassifier('/home/ajensen/Downloads/haarcascade_frontalface_alt.xml')
         self.faces = self.face_cascade.detectMultiScale(frame, scaleFactor=1.2, minSize=(20, 30))
         for (x, y, w, h) in self.faces:
-            self.mouth_y1 = int(y+4*h/5)
-            self.mouth_y2 = int(y+3*h/4)
-            self.mouth_x1 = int(x+w/4)
-            self.mouth_x2 = int(x+3*w/4)
+            self.y1 = int(y+4*h/5)
+            self.y2 = int(y+3*h/4)
+            self.x1 = int(x+w/4)
+            self.x2 = int(x+3*w/4)
 
 class Player(object):
     """
@@ -85,12 +85,12 @@ class Player(object):
 
 class View:
     """Display cookies on screen """
-    def __init__(self, model):
+    def __init__(self, model, size):
         """
         Initialize the view with a reference to the model and the specified game screen dimensions (represented as a tuple containing the width and height
         """
         self.model = model
-
+        self.screen = pygame.display.set_mode(size)
 
     def draw(self,frame):
         """
@@ -102,16 +102,16 @@ class View:
 
 
 if __name__ == '__main__':
-
-
+    pygame.init()
+    size = (800, 800)
     model = Model()
 
-    view = View(model)
+    view = View(model,size)
 
 
     while True:
         # Capture frame-by-frame
-        pygame.init()
+
         model.update()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
