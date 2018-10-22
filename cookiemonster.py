@@ -3,6 +3,11 @@ import cv2
 import random
 import pygame
 
+"""
+TODO: Eat Cookies, create background,
+
+"""
+
 cap = cv2.VideoCapture(0)
 kernel = np.ones((21, 21), 'uint8')
 mouth_y = [0,0] #initialize array for mouth y
@@ -11,8 +16,8 @@ mouth_open = False
 
 class Model(object):
     """
-    Attributes: cookie_list
-    methods: eat
+    Attributes: cookie_list, player
+    methods: update
     """
     def __init__(self):
         self.cookies = Cookies()
@@ -59,7 +64,7 @@ class Bomb(Cookies):
         pass
 
 class Mouth(object):
-    """Creates a mouth in th model"""
+    """Creates a mouth in the model"""
     def __init__(self, mouth_x1=0, mouth_y1=0, mouth_x2=0, mouth_y2=0):
         self.x1=mouth_x1
         self.y1=mouth_y1
@@ -92,14 +97,16 @@ class View:
         self.model = model
         self.screen = pygame.display.set_mode(size)
 
-    def draw(self,frame):
+    def draw(self):
         """
         Draw the current game state to the screen
         """
+        for i in range(size[0]):
+            pygame.draw.line(self.screen,(i/8+40,i/20+20,i/7+70),(i,0),(i,800))
 
         #self.screen.fill(pygame.Color(0,0,0))
-        pygame.circle(frame,(100,100,100),(self.model.cookies.x,self.model.cookies.y),(self.model.cookies.radius))
-
+        #pygame.circle(frame,(100,100,100),(self.model.cookies.x,self.model.cookies.y),(self.model.cookies.radius))
+            #pygame.image('Cookie.png')
 
 if __name__ == '__main__':
     pygame.init()
@@ -111,7 +118,7 @@ if __name__ == '__main__':
 
     while True:
         # Capture frame-by-frame
-
+        view.draw()
         model.update()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
