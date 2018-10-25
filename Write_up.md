@@ -13,7 +13,7 @@ We ran into difficulties around the game being mirrored, but decided to keep it 
 Implementation
 
 Our main components can be seen in the uml diagram below:
-![UML](uml.jpg
+![UML](uml.jpg)
 
 They consist of the typical model, view, controller layout, where our controller is controlled by the players face. The player class has a mouth, so the cookie monster avatar will center on the mouth, instead of the face in general. The cookies themselves have their own coordinates, and a boolean to decide whether or not the cookie will be a bomb, which has a 20% chance of occurring.
 
